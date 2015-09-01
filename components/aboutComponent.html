@@ -44,36 +44,36 @@
             <div class="card-content">
                 <h1>How it was done</h1>
                 <h1>TL;DR</h1>
-                <div>1. Analyze ~120,000 matches</div>
-                <div>2. Determine a core build for each champion in each suitable role</div>
-                <div>3. Determine starting items</div>
-                <div>4. Determine situational buys</div>
-                <div>5. Make it pretty</div>
-                <h2>1. Analyze 120,000 matches</h2>
+                <div>1. Analyzed ~120,000 matches</div>
+                <div>2. Determined a core build for each champion in each suitable role</div>
+                <div>3. Determined starting items</div>
+                <div>4. Determined situational buys</div>
+                <div>5. Made it pretty</div>
+                <h2>1. Analyzed 120,000 matches</h2>
                 <h3>Downloading</h3>
-                <p>For every master and up player in EUW/NA/KR, I searched for their most recent 30 solo-q games and filtered the ones for patch 5.16</p>
+                <p>For every player that ranks master and up player in EUW/NA/KR, their most recent 30 solo-q games were retrieved and only the ones after patch 5.16 were kept.</p>
                 <p>• Found 3514 games in NA (of 970 players), 5212 in EUW (of 1111 players) and 3557 in KR (of 1085 players)</p>
 
-                <h2>2. Determine a core build for each champion in each suitable role</h2>
-                <h3>Determine role</h3>
-                <p> Since the match data didn't have a clear role for every player, I decided to determine the role based on creep score and jungle creep score. </p>
-                <p>Since game length affects cs count, I normalized all the values by dividing each person's cs by his/her team's total cs.</p>
-                <p>Then I used K Means clustering to determine 3 categories, carries (solo lane + bot carry), junglers and supports.</p> 
+                <h2>2. Determined a core build for each champion in each suitable role</h2>
+                <h3>Determining the role</h3>
+                <p>Since the match data didn't have a clear role for every player, role was determined based on regular creep score and jungle creep score.</p>
+                <p>Since game length affects CS count, the values were normalized by dividing each person's CS by his/her team's total CS.</p>
+                <p>Then K-Means clustering was used to determine 3 categories, carries (solo lane + bot carry), junglers and supports.</p> 
                 <p>The resulting cluter centers were (0.150, 0.0503), (0.030, 0.349), (0.023, 0.003). The first number is percent of total team jungle cs and the second number is the percent of total team regular minions killed. Intuitively, the first one is the cluster of junglers, the second is the cluster of carries and the last one is the cluster of supports.</p>
                 
                 <h3>Determine build path</h3>
                 <h4>Initial attempts</h4>
                 <h5>Pure Popularity</h5>
-                <p> Initial attempt was to just tally up which items were picked the most per champion per role. As predicted, this doens't really work really well, because it doesn't really account for synergy / anti-synergy between items. There is also no notion of sequential order, i.e. the order in which the items should be bought.</p>
+                <p> Initial attempt was to just tally up which items were picked the most per champion per role. As predicted, this doens't really work really well, because it doesn't really account for synergy / anti-synergy between items. There is also no notion of sequential order, i.e., the order in which the items should be bought.</p>
                 <h5> Markov Chains</h5>
-                <p> Another attempt was to use markov chains of length 2.  Essentially, the next item was determined by what is most picked based the previous two purchases. The downside of this is that after the initial first and second buy, the algorithm tunnel visions onto a small subset of item choices. This can be attributed to a small dataset.</p>
+                <p> Another attempt was to use fixed-length markov chains.  Essentially, the next item was determined by what is most picked based the previous two purchases. The downside of this is that after the initial first and second buy, the algorithm tunnel visions onto a small subset of item choices. This can be attributed to a small dataset.</p>
                 <h4>Best attempt</h4>
                 <p> The final attempt was a mix of the previous two. It utilized the popularilty of items and accounted for the synergy of items. The heuristic was to add a value to each item based on its relative position with respect to the current items selected so far.</p>
                 <h5> In other words</h5>
-                <p> Suppose we already have two items selected in our build X, and is looking for the third. For every item in every build order, if it's not already in X, we assign a value ot it. It starts off at a value of at a constant Y and will be reduced based on a number of factors</p>
-                <div>• Whether it was bought after the items in X</div>
-                <div>• Whether it was bought before the items in X</div>
-                <div>• The relative position with respect to items of X</div>
+                <p> Suppose we already have two items selected in our build X, and is looking for the third. For every item in every build order, if it's not already in X, we assign a value ot it. It starts off at a constant value Y and will be reduced based on a number of factors</p>
+                <div>• Whether it was bought after the items in X (occurs later in the order sequence)</div>
+                <div>• Whether it was bought before the items in X (occurs before)</div>
+                <div>• The relative distance away from the items of X</div>
                 <p>This produced decent results and provides a sequential build order. (i.e. You can build the items from left to right)</p>
 
 
@@ -87,17 +87,24 @@
                 <h2>4. Determining situational buys</h2>
                     <h3>Determining damage composition</h3>
                         <h4>Preprocessing</h4>
-                            <p>For every team composition, the total ad/ap/true damage done to champions was computed and then normalized against the total damage done to champions</p>
-                        <h4> Determining whether a composition is ap or ad heavy</h4>
-                            <p> Again, using K Means clustering, 3 categories were determined.</p>
+                            <p>For every team composition, the total AD/AP damage done to champions was computed and then normalized against the total damage done to champions</p>
+                        <h4> Determining whether a composition is AP or AD-heavy</h4>
+                            <p> Again, using K-Means clustering, 3 categories were determined.</p>
                             <p> The resulting centers were (0.482, 0.458), (0.342, 0.609), (0.626, 0.313). The first number in each pair represents the percentage of total damage to champions that was AD. The second number is for AP</p>
-                            <p> So data points close to the second would be AP-heavy comps and those close to third would be AD-heavy comps.  It was probably overkill to use clustering to determine the categories, because we're essentially only comparing on attribute. The two numbers are essentially complements of one another (minus the insignificant true damage portion)</p>
-                    <h3>Identifying items good against ap/ad heavy compositions</h3>
+                            <p> So data points close to the second center would be AP-heavy comps and those close to third would be AD-heavy comps.  It was probably overkill to use clustering to determine the categories, because we're essentially only comparing on attribute. The two numbers are essentially complements of one another (minus the insignificant true damage portion)</p>
+                    <h3>Identifying items good against AP/AD heavy compositions</h3>
                         <p>Given each team composition, the items built by the other team were tallied up</p>
-                        <p>If an item was picked more against ad heavy composition than in neutral and ap heavy compositions, it'd be selected. And vice versa against ap heavy compositions.</p>
+                        <p>If an item was picked more against AD-heavy composition than in neutral and AP-heavy compositions, it'd be selected. And vice versa against AP-heavy compositions.</p>
                 <h2>5. Make it pretty</h2>
                     <p>Having the items sets is great, but it'd be better if the users can see the result before they download. Therefore, I created a website to easily browse through them. This site was done using Polymer. It was my first experience with it.</p>
                     <p>The site actually parses the same JSON file you'd be downloading. There is also a "show JSON" button so that you can see it for yourself and just copy it if you wanted to. The download link leads to the github repository.</p>
+                <h2> Notes </h2>
+                <ul>
+                    <li>When determining items for the core and situational buys, only fully upgraded ones are considered, with some exceptions such as Archangel's Staff, Manamune, Sightstone. Consumables were also ignored. Boots with Enchantments were mapped to their respective ones without the Enchantment.</li>
+                    <li>
+                        For certain champions, the <a href="../scripts/data/champion_counts.txt">data set</a> was very small compared to others, since they weren't play a lot at the highest levels. 
+                    </li>
+                </ul>
                 <br>
 
                 <div class="legal">What to Build isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends © Riot Games, Inc. </div>
