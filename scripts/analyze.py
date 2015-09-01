@@ -111,7 +111,7 @@ def analyze_match(match):
 def get_dmg_centers():
 	
 	data = []
-	for i in xrange(100):
+	for i in xrange(120):
 		print i
 		games = get_games(i * NUM_GAMES, NUM_GAMES)
 		for g in games:
@@ -127,7 +127,10 @@ def get_dmg_centers():
 	plt.clf()
 
 	# Plot the training points
-	plt.scatter([d[0] for d in data], [d[1] for d in data])
+	colors = ['r', 'g', 'b']
+
+	for d in data:
+		plt.scatter(d[0], d[1], color=colors[k_means.predict(d)][0])
 	plt.xlabel('AD')
 	plt.ylabel('AP')
 
@@ -164,7 +167,7 @@ def get_defence_items():
 	
  	# { champId: {support: {ap: { itemId: 0, ..., count = 0}, ad: {}, mixed: {}} } ...}
 	data = defaultdict(lambda: defaultdict(lambda: {'ap': defaultdict(lambda: 0.01), 'ad': defaultdict(lambda: 0.01), 'mixed': defaultdict(lambda: 0.01), 'total': 0.01}))
-	for i in xrange(100):
+	for i in xrange(120):
 		print i
 		games = get_games(i * NUM_GAMES, NUM_GAMES)
 		for g in games:
@@ -260,13 +263,22 @@ def get_role_centers():
 	print k_means.cluster_centers_
 
 
-	plt.figure(2, figsize=(4, 4))
+	plt.figure(2, figsize=(12, 8))
 	plt.clf()
 
 	# Plot the training points
-	plt.scatter([d[0] for d in data], [d[1] for d in data])
-	plt.xlabel('minions')
-	plt.ylabel('jungle')
+	colors = ['r', 'g', 'b']
+	clusters = [[], [], []]
+
+	for d in data:
+		cluster = k_means.predict(d)[0]
+		clusters[cluster].append(d)
+	for i in xrange(3):
+		cluster = clusters[i]
+		plt.scatter([c[0] for c in cluster], [c[1] for c in cluster], color=colors[i])
+
+	plt.xlabel('minion CS %')
+	plt.ylabel('jungle CS %')
 
 	plt.xlim(0, 1)
 	plt.ylim(0, 1)
@@ -315,7 +327,7 @@ def get_role_type(match):
 def get_role_items():
 
 	data = defaultdict(lambda: {'jungle': defaultdict(lambda: 0.01), 'support': defaultdict(lambda: 0.01), 'carry': defaultdict(lambda: 0.01), 'total': 0.01})
-	for i in xrange(100):
+	for i in xrange(120):
 		print i
 		games = get_games(i * NUM_GAMES, NUM_GAMES)
 		for g in games:
@@ -367,7 +379,7 @@ def normalize_start_item(item_id):
 
 def get_starting_items():
 	data = defaultdict(lambda: {'jungle': defaultdict(lambda: 0.01), 'support': defaultdict(lambda: 0.01), 'carry': defaultdict(lambda: 0.01), 'total': 0.01})
-	for i in xrange(100):
+	for i in xrange(120):
 		print i
 		games = get_games(i * NUM_GAMES, NUM_GAMES)
 		for g in games:
@@ -429,9 +441,9 @@ load_items()
 if __name__ == "__main__":
 	pass
 	# get_dmg_centers()
-	# get_role_centers()
+	get_role_centers()
 	# get_defence_items()
 
 
 	# get_role_items()
-	get_starting_items()
+	# get_starting_items()
