@@ -67,7 +67,7 @@
                 <h5>Pure Popularity</h5>
                 <p> The initial attempt tallied up which items were picked the most per champion, per role. As predicted, this doesn't work too well, because it doesn't account for the synergy or anti-synergy between items. There is also no notion of sequential order, in other words, the order in which the items should be bought.</p>
                 <h5> Markov Chains</h5>
-                <p> Another attempt was to use fixed-length markov chains.  Essentially, the next item was determined by what is most bought based on the previous two purchases. The downside of this is that after the initial first and second buy, the algorithm tunnel visions onto a small subset of item choices. This can be attributed to a small dataset.</p>
+                <p> Another attempt was to use fixed-length markov chains.  Essentially, the next item was determined by what is most bought based on the previous two purchases. The downside of this is that after the initial first and second buy, the algorithm tunnel visioned onto a small subset of item choices. This can be attributed to a small dataset.</p>
                 <h4>Best attempt</h4>
                 <p> The final attempt was a mix of the previous two. It utilized the popularilty of items and accounted for the synergy of items. The heuristic was to add a value to each item based on its relative position with respect to the current items selected thus far.</p>
                 <h5> In other words</h5>
@@ -99,7 +99,7 @@
                         <p>Given each team's composition, the items built by the other team were tallied up.</p>
                         <p>If an item was bought more frequently as we progress from AP-heavy to neutral to AD-heavy compositions, it is highly likely that it's good against AD-heavy compositions, so it'd be selected. Vice versa against AP-heavy compositions.</p>
                 <h2>5. Making it pretty</h2>
-                    <p>Having the items sets is great, but it'd be better if the users can see the result before they download. Therefore, a website was created to easily browse through the item sets. This site was done using Polymer, so it follows a materialistic design. It was my first experience with it.</p>
+                    <p>Having the items sets is great, but it'd be better if the users can see the result before they downloaded it. Therefore, a website was created to easily browse through the item sets. This site was done using Polymer, so it follows a materialistic design. It was my first experience with it.</p>
                     <p>The site actually parses the same JSON file you'd be downloading. There is also a "show JSON" button so that you can see it for yourself and just copy the JSON if you wanted to. The download link leads to the github repository.</p>
                 <h2> Notes </h2>
                 <ul>
