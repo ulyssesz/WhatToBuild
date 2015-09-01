@@ -65,7 +65,7 @@
                 <h3>Determining build path</h3>
                 <h4>Initial attempts</h4>
                 <h5>Pure Popularity</h5>
-                <p> The initial attempt tallied up which items were picked the most per champion per role. As predicted, this doesn't work too well, because it doesn't account for the synergy or anti-synergy between items. There is also no notion of sequential order, in other words, the order in which the items should be bought.</p>
+                <p> The initial attempt tallied up which items were picked the most per champion, per role. As predicted, this doesn't work too well, because it doesn't account for the synergy or anti-synergy between items. There is also no notion of sequential order, in other words, the order in which the items should be bought.</p>
                 <h5> Markov Chains</h5>
                 <p> Another attempt was to use fixed-length markov chains.  Essentially, the next item was determined by what is most bought based on the previous two purchases. The downside of this is that after the initial first and second buy, the algorithm tunnel visions onto a small subset of item choices. This can be attributed to a small dataset.</p>
                 <h4>Best attempt</h4>
@@ -82,7 +82,7 @@
 
                 <h2>3. Determining starting items</h2>
                     <h3>Preprocessing: Determining an initial buy</h3>
-                        <p>This was relatively simply done. To determine the initial buy for a certain player, the match timeline events were iterated through for the first 2 minutes of the game.</p>
+                        <p>This was relatively simple to do. To determine the initial buy for a certain player, the match timeline events were iterated through for the first 2 minutes of the game.</p>
                     <h3>Picking the initial buy</h3>
                         <p>The above data was tallied up and for each champion and role, the most popular buy was picked.</p>
 
