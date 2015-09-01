@@ -40,54 +40,56 @@
         <my-card class="champion-list" elevation="3">
             <div class="card-content">
                 <h1>TL;DR</h1>
-                <div>• Analyze ~100,000 matches</div>
-                <div>• Figure out what the popular builds for different roles per champion</div>
-                <div>• Determine starting items</div>
-                <div>• Determine situational buys</div>
-                <h2>Analyze 120,000 matches</h2>
+                <div>1. Analyze ~120,000 matches</div>
+                <div>2. Determine a core build for each champion in each suitable role</div>
+                <div>3. Determine starting items</div>
+                <div>4. Determine situational buys</div>
+                <h2>1. Analyze 120,000 matches</h2>
                 <h3>Downloading</h3>
-                <div>For every master and up player in EUW/NA/KR, I searched for their most recent 30 solo q games and filtered the ones for patch 5.16</div>
-                <div>• Found 3514 games in NA (of 970 players), 5212 in EUW (of 1111 players) and 3557 in KR (of 1085 players)</div>
+                <p>For every master and up player in EUW/NA/KR, I searched for their most recent 30 solo-q games and filtered the ones for patch 5.16</p>
+                <p>• Found 3514 games in NA (of 970 players), 5212 in EUW (of 1111 players) and 3557 in KR (of 1085 players)</p>
 
-                <h2>Figure out what the best build for different roles per champion</h2>
+                <h2>2. Determine a core build for each champion in each suitable role</h2>
                 <h3>Determine role</h3>
-                <div> Since the match data didn't have a clear role for every player, I decided to determine the role based on creep score and jungle creep score. </div>
-                <div>Since game length affects cs count, I normalized all the values by dividing each person's cs by his/her team's total cs.</div>
-                <div>Then I used K Means clustering to determine 3 categories, carries (solo lane + bot carry), jungler and support</div>
-                <div>This is the resulting graph [insert graph]</div>
+                <p> Since the match data didn't have a clear role for every player, I decided to determine the role based on creep score and jungle creep score. </p>
+                <p>Since game length affects cs count, I normalized all the values by dividing each person's cs by his/her team's total cs.</p>
+                <p>Then I used K Means clustering to determine 3 categories, carries (solo lane + bot carry), junglers and supports.</p> 
+                <p>The resulting cluter centers were (0.150, 0.0503), (0.030, 0.349), (0.023, 0.003). The first number is percent of total team jungle cs and the second number is the percent of total team regular minions killed. Intuitively, the first one is the cluster of junglers, the second is the cluster of carries and the last one is the cluster of supports.</p>
+                
+                <h3>Determine build path</h3>
+                <h4>Initial attempts</h4>
+                <h5>Pure Popularity</h5>
+                <p> Initial attempt was to just tally up which items were picked the most per champion per role. As predicted, this doens't really work really well, because it doesn't really account for synergy / anti-synergy between items. There is also no notion of sequential order, i.e. the order in which the items should be bought.</p>
+                <h5> Markov Chains</h5>
+                <p> Another attempt was to use markov chains of length 2.  Essentially, the next item was determined by what is most picked based the previous two purchases. The downside of this is that after the initial first and second buy, the algorithm tunnel visions onto a small subset of item choices. This can be attributed to a small dataset.</p>
+                <h4>Best attempt</h4>
+                <p> The final attempt was a mix of the previous two. It utilized the popularilty of items and accounted for the synergy of items. The heuristic was to add a value to each item based on its relative position with respect to the current items selected so far.</p>
+                <h5> In other words</h5>
+                <p> Suppose we already have two items selected in our build X, and is looking for the third. For every item in every build order, if it's not already in X, we assign a value ot it. It starts off at a value of at a constant Y and will be reduced based on a number of factors</p>
+                <div>• Whether it was bought after the items in X</div>
+                <div>• Whether it was bought before the items in X</div>
+                <div>• The relative position with respect to items of X</div>
+                <p>This produced decent results and provides a sequential build order. (i.e. You can build the items from left to right)</p>
 
-                <h2>Determine build path</h2>
-                <h3>Initial attempts</h3>
-                <h4>Pure Popularity</h4>
-                <div> Initial attempt was to just tally up which items were picked the most per champion per role. As predicted, this doens't really work really well, because it doesn't really account for synergy / anti-synergy between items. There is also no notion of sequential order, i.e. the order in which the items should be bought.</div>
-                <h4> Markov Chains</h4>
-                <div> Another attempt was to use markov chains of length 2.  Essentially, the next item was determined by what is most picked based the previous two purchases. The downside of this is that after the initial first and second buy, the algorithm tunnel visions onto a small subset of item choices. This can be attributed to a small dataset.</div>
-                <h3>Best attempt</h3>
-                <div> The final attempt was a mix of the previous two. It utilized the popularilty of items and accounted for the synergy of items. The heuristic was to add a value to each item based on its relative position with respect to the current items selected so far.</div>
-                <h4> In other words</h4>
-                <div> Suppose we already have two items selected in our build X, and is looking for the third. For every item in every build order, if it's not already in X, we assign a value ot it. It starts off at a value of at a constant Y and will be reduced based on a number of factors</div>
-                <div> Whether it was bought after the items in X</div>
-                <div> whether it was bought before the items in X</div>
-                <div> The relative position with respect to items of X</div>
-                <div> This produced decent results and provides a sequential build order. (i.e. You can build the items from left to right)</div>
 
-
-                <h2> Determing starting items</h2>
-                    <h3> Determine an initial buy</h3>
-                        <div>Iterated through events in the first 2 minutes of each game</div>
+                <h2>3. Determing starting items</h2>
+                    <h3>Preprocessing: Determine an initial buy</h3>
+                        <p>This was relatively simply done. To determine the initial buy for a certain player, the match timeline events were iterated through for the first 2 minutes of the game.</p>
                     <h3>Picking the initial buy</h3>
-                        <div>For each champion and role, the most popular buy was picked.</div>
+                        <p>The above data was tallied up and for each champion and role, the most popular buy was picked.</p>
 
 
-                <h2> Determining situational buys</h2>
-                <h3>Determining damage composition</h3>
-                    <h4> Preprocessing</h4>
-                        <div>For every team composition, the total ad/ap/true damage done to champions was computed and then normalized against the total damage done to champions</div>
-                    <h4> Determining whether a composition is ap or ad heavy</h4>
-                        <div> Again, using K Means clustering, 3 categories were determined. </div>
-                    <h4>Identifying items good against ap/ad heavy compositions</h4>
-                        <div>Given each team composition, the items built by the other team were tallied up</div>
-                        <div>If an item was picked more against ad heavy composition than in neutral and ap heavy compositions, it'd be selected. And vice versa against ap heavy compositions.</div>
+                <h2>4. Determining situational buys</h2>
+                    <h3>Determining damage composition</h3>
+                        <h4>Preprocessing</h4>
+                            <p>For every team composition, the total ad/ap/true damage done to champions was computed and then normalized against the total damage done to champions</p>
+                        <h4> Determining whether a composition is ap or ad heavy</h4>
+                            <p> Again, using K Means clustering, 3 categories were determined.</p>
+                            <p> The resulting centers were (0.482, 0.458), (0.342, 0.609), (0.626, 0.313). The first number in each pair represents the percentage of total damage to champions that was AD. The second number is for AP</p>
+                            <p> So data points close to the second would be AP-heavy comps and those close to third would be AD-heavy comps.  It was probably overkill to use clustering to determine the categories, because we're essentially only comparing on attribute. The two numbers are essentially complements of one another (minus the insignificant true damage portion)</p>
+                    <h3>Identifying items good against ap/ad heavy compositions</h3>
+                        <p>Given each team composition, the items built by the other team were tallied up</p>
+                        <p>If an item was picked more against ad heavy composition than in neutral and ap heavy compositions, it'd be selected. And vice versa against ap heavy compositions.</p>
 
             </div>
         </my-card>
