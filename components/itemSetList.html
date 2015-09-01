@@ -159,7 +159,7 @@
                 <div class="bottom-toolbar">
                     <paper-toggle-button></paper-toggle-button>
                     <div class="toggle-label">show JSON</div>
-                    <paper-button raised class="download-button">
+                    <paper-button raised class="download-button" on-click="golink">
                         <iron-icon icon="file-download"></iron-icon>
                         download
                     </paper-button>
@@ -287,7 +287,12 @@
             getParams: function() {
                 console.log({ t: new Date().getTime() });
                 return { t: new Date().getTime() };
+            },
+
+            golink: function() {
+                window.location.href = "https://github.com/ulyssesz/WhatToBuildItemSets";
             }
+
         });
     </script>
 </dom-module>

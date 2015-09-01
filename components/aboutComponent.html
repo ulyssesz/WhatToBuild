@@ -33,17 +33,22 @@
         h5 { font-size: 13px; }
         h6 { font-size: 11px; }
 
+        .legal {
+            color: grey;
+        }
         
 
     </style>
     <template>
         <my-card class="champion-list" elevation="3">
             <div class="card-content">
+                <h1>How it was done</h1>
                 <h1>TL;DR</h1>
                 <div>1. Analyze ~120,000 matches</div>
                 <div>2. Determine a core build for each champion in each suitable role</div>
                 <div>3. Determine starting items</div>
                 <div>4. Determine situational buys</div>
+                <div>5. Make it pretty</div>
                 <h2>1. Analyze 120,000 matches</h2>
                 <h3>Downloading</h3>
                 <p>For every master and up player in EUW/NA/KR, I searched for their most recent 30 solo-q games and filtered the ones for patch 5.16</p>
@@ -90,7 +95,12 @@
                     <h3>Identifying items good against ap/ad heavy compositions</h3>
                         <p>Given each team composition, the items built by the other team were tallied up</p>
                         <p>If an item was picked more against ad heavy composition than in neutral and ap heavy compositions, it'd be selected. And vice versa against ap heavy compositions.</p>
+                <h2>5. Make it pretty</h2>
+                    <p>Having the items sets is great, but it'd be better if the users can see the result before they download. Therefore, I created a website to easily browse through them. This site was done using Polymer. It was my first experience with it.</p>
+                    <p>The site actually parses the same JSON file you'd be downloading. There is also a "show JSON" button so that you can see it for yourself and just copy it if you wanted to. The download link leads to the github repository.</p>
+                <br>
 
+                <div class="legal">What to Build isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends © Riot Games, Inc. </div>
             </div>
         </my-card>
     </template>

@@ -8,12 +8,12 @@
             "type": "Starting items",
             "items": [
                 {
-                    "id": "2004",
-                    "count": 1
+                    "id": "2003",
+                    "count": 3
                 },
                 {
-                    "id": "2010",
-                    "count": 3
+                    "id": "2004",
+                    "count": 1
                 },
                 {
                     "id": "3302",
