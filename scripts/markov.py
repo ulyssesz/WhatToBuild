@@ -255,7 +255,7 @@ def end_items():
 
 
 if __name__ == "__main__":
-    # games_by_role()
+    games_by_role()
     # markov()
-    get_build_orders()
-    end_items()
+    # get_build_orders()
+    # end_items()
