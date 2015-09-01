@@ -1,0 +1,100 @@
+{
+    "title": "Skarner: jungle",
+    "type": "custom",
+    "map": "SR",
+    "mode": "any",
+    "blocks": [
+        {
+            "type": "Starting items",
+            "items": [
+                {
+                    "id": "1039",
+                    "count": 1
+                },
+                {
+                    "id": "2003",
+                    "count": 2
+                },
+                {
+                    "id": "3340",
+                    "count": 1
+                }
+            ]
+        },
+        {
+            "type": "Common end items",
+            "items": [
+                {
+                    "id": "3709",
+                    "count": 1
+                },
+                {
+                    "id": "3071",
+                    "count": 1
+                },
+                {
+                    "id": "3742",
+                    "count": 1
+                },
+                {
+                    "id": "3111",
+                    "count": 1
+                },
+                {
+                    "id": "3143",
+                    "count": 1
+                },
+                {
+                    "id": "3190",
+                    "count": 1
+                }
+            ]
+        },
+        {
+            "type": "Items against ad-heavy teams",
+            "items": [
+                {
+                    "count": 1,
+                    "id": "3742"
+                },
+                {
+                    "count": 1,
+                    "id": "3143"
+                },
+                {
+                    "count": 1,
+                    "id": "3047"
+                },
+                {
+                    "count": 1,
+                    "id": "3725"
+                }
+            ]
+        },
+        {
+            "type": "Items against ap-heavy teams",
+            "items": [
+                {
+                    "count": 1,
+                    "id": "3709"
+                },
+                {
+                    "count": 1,
+                    "id": "3190"
+                },
+                {
+                    "count": 1,
+                    "id": "3102"
+                },
+                {
+                    "count": 1,
+                    "id": "3065"
+                },
+                {
+                    "count": 1,
+                    "id": "3025"
+                }
+            ]
+        }
+    ]
+}

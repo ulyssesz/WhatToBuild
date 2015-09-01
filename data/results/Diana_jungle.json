@@ -1,0 +1,72 @@
+{
+    "title": "Diana: jungle",
+    "type": "custom",
+    "map": "SR",
+    "mode": "any",
+    "blocks": [
+        {
+            "type": "Starting items",
+            "items": [
+                {
+                    "id": "1039",
+                    "count": 1
+                },
+                {
+                    "id": "2003",
+                    "count": 2
+                },
+                {
+                    "id": "3340",
+                    "count": 1
+                }
+            ]
+        },
+        {
+            "type": "Common end items",
+            "items": [
+                {
+                    "id": "3724",
+                    "count": 1
+                },
+                {
+                    "id": "3157",
+                    "count": 1
+                },
+                {
+                    "id": "3001",
+                    "count": 1
+                },
+                {
+                    "id": "3089",
+                    "count": 1
+                },
+                {
+                    "id": "3020",
+                    "count": 1
+                },
+                {
+                    "id": "3135",
+                    "count": 1
+                }
+            ]
+        },
+        {
+            "type": "Items against ad-heavy teams",
+            "items": [
+                {
+                    "count": 1,
+                    "id": "3157"
+                }
+            ]
+        },
+        {
+            "type": "Items against ap-heavy teams",
+            "items": [
+                {
+                    "count": 1,
+                    "id": "3001"
+                }
+            ]
+        }
+    ]
+}

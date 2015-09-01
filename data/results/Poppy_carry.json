@@ -1,0 +1,75 @@
+{
+    "title": "Poppy: carry",
+    "type": "custom",
+    "map": "SR",
+    "mode": "any",
+    "blocks": [
+        {
+            "type": "Starting items",
+            "items": [
+                {
+                    "id": "2003",
+                    "count": 3
+                },
+                {
+                    "id": "2041",
+                    "count": 1
+                },
+                {
+                    "id": "3340",
+                    "count": 1
+                }
+            ]
+        },
+        {
+            "type": "Common end items",
+            "items": [
+                {
+                    "id": "3078",
+                    "count": 1
+                },
+                {
+                    "id": "3153",
+                    "count": 1
+                },
+                {
+                    "id": "3158",
+                    "count": 1
+                },
+                {
+                    "id": "3142",
+                    "count": 1
+                },
+                {
+                    "id": "3046",
+                    "count": 1
+                },
+                {
+                    "id": "3065",
+                    "count": 1
+                }
+            ]
+        },
+        {
+            "type": "Items against ap-heavy teams",
+            "items": [
+                {
+                    "count": 1,
+                    "id": "3078"
+                },
+                {
+                    "count": 1,
+                    "id": "3111"
+                },
+                {
+                    "count": 1,
+                    "id": "3800"
+                },
+                {
+                    "count": 1,
+                    "id": "3065"
+                }
+            ]
+        }
+    ]
+}

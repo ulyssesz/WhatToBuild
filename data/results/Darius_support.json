@@ -1,0 +1,46 @@
+{
+    "title": "Darius: support",
+    "type": "custom",
+    "map": "SR",
+    "mode": "any",
+    "blocks": [
+        {
+            "type": "Starting items",
+            "items": [
+                {
+                    "id": "1054",
+                    "count": 1
+                },
+                {
+                    "id": "2003",
+                    "count": 1
+                },
+                {
+                    "id": "3340",
+                    "count": 1
+                }
+            ]
+        },
+        {
+            "type": "Common end items",
+            "items": [
+                {
+                    "id": 3111,
+                    "count": 1
+                },
+                {
+                    "id": 3742,
+                    "count": 1
+                },
+                {
+                    "id": 3071,
+                    "count": 1
+                },
+                {
+                    "id": 3065,
+                    "count": 1
+                }
+            ]
+        }
+    ]
+}

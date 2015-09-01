@@ -1,0 +1,63 @@
+{
+    "title": "Poppy: jungle",
+    "type": "custom",
+    "map": "SR",
+    "mode": "any",
+    "blocks": [
+        {
+            "type": "Starting items",
+            "items": [
+                {
+                    "id": "1039",
+                    "count": 1
+                },
+                {
+                    "id": "2003",
+                    "count": 2
+                },
+                {
+                    "id": "3340",
+                    "count": 1
+                }
+            ]
+        },
+        {
+            "type": "Common end items",
+            "items": [
+                {
+                    "id": "3078",
+                    "count": 1
+                },
+                {
+                    "id": "3153",
+                    "count": 1
+                },
+                {
+                    "id": "3726",
+                    "count": 1
+                },
+                {
+                    "id": "3087",
+                    "count": 1
+                },
+                {
+                    "id": "3158",
+                    "count": 1
+                },
+                {
+                    "id": "3707",
+                    "count": 1
+                }
+            ]
+        },
+        {
+            "type": "Items against ap-heavy teams",
+            "items": [
+                {
+                    "count": 1,
+                    "id": "3111"
+                }
+            ]
+        }
+    ]
+}

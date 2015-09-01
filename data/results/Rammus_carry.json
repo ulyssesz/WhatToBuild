@@ -1,0 +1,79 @@
+{
+    "title": "Rammus: carry",
+    "type": "custom",
+    "map": "SR",
+    "mode": "any",
+    "blocks": [
+        {
+            "type": "Starting items",
+            "items": [
+                {
+                    "id": "1054",
+                    "count": 1
+                },
+                {
+                    "id": "2003",
+                    "count": 1
+                },
+                {
+                    "id": "3340",
+                    "count": 1
+                }
+            ]
+        },
+        {
+            "type": "Common end items",
+            "items": [
+                {
+                    "id": "3068",
+                    "count": 1
+                },
+                {
+                    "id": "3075",
+                    "count": 1
+                },
+                {
+                    "id": "3047",
+                    "count": 1
+                },
+                {
+                    "id": "3083",
+                    "count": 1
+                },
+                {
+                    "id": "3512",
+                    "count": 1
+                },
+                {
+                    "id": "3116",
+                    "count": 1
+                }
+            ]
+        },
+        {
+            "type": "Items against ap-heavy teams",
+            "items": [
+                {
+                    "count": 1,
+                    "id": "3001"
+                },
+                {
+                    "count": 1,
+                    "id": "3800"
+                },
+                {
+                    "count": 1,
+                    "id": "3111"
+                },
+                {
+                    "count": 1,
+                    "id": "3725"
+                },
+                {
+                    "count": 1,
+                    "id": "3060"
+                }
+            ]
+        }
+    ]
+}

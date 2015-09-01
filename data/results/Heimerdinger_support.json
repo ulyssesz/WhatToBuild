@@ -1,0 +1,55 @@
+{
+    "title": "Heimerdinger: support",
+    "type": "custom",
+    "map": "SR",
+    "mode": "any",
+    "blocks": [
+        {
+            "type": "Starting items",
+            "items": [
+                {
+                    "id": "1056",
+                    "count": 1
+                },
+                {
+                    "id": "2003",
+                    "count": 2
+                },
+                {
+                    "id": "3340",
+                    "count": 1
+                }
+            ]
+        },
+        {
+            "type": "Common end items",
+            "items": [
+                {
+                    "id": 3092,
+                    "count": 1
+                },
+                {
+                    "id": 3165,
+                    "count": 1
+                },
+                {
+                    "id": 3190,
+                    "count": 1
+                }
+            ]
+        },
+        {
+            "type": "Items against ad-heavy teams",
+            "items": [
+                {
+                    "count": 1,
+                    "id": "3190"
+                },
+                {
+                    "count": 1,
+                    "id": "3157"
+                }
+            ]
+        }
+    ]
+}

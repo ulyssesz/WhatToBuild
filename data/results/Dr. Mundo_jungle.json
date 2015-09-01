@@ -1,0 +1,54 @@
+{
+    "title": "Dr. Mundo: jungle",
+    "type": "custom",
+    "map": "SR",
+    "mode": "any",
+    "blocks": [
+        {
+            "type": "Starting items",
+            "items": [
+                {
+                    "id": "1039",
+                    "count": 1
+                },
+                {
+                    "id": "2003",
+                    "count": 2
+                },
+                {
+                    "id": "3340",
+                    "count": 1
+                }
+            ]
+        },
+        {
+            "type": "Common end items",
+            "items": [
+                {
+                    "id": 3725,
+                    "count": 1
+                },
+                {
+                    "id": 3143,
+                    "count": 1
+                },
+                {
+                    "id": 3047,
+                    "count": 1
+                },
+                {
+                    "id": 3065,
+                    "count": 1
+                },
+                {
+                    "id": 3083,
+                    "count": 1
+                },
+                {
+                    "id": 3075,
+                    "count": 1
+                }
+            ]
+        }
+    ]
+}

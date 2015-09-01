@@ -1,0 +1,96 @@
+{
+    "title": "Maokai: support",
+    "type": "custom",
+    "map": "SR",
+    "mode": "any",
+    "blocks": [
+        {
+            "type": "Starting items",
+            "items": [
+                {
+                    "id": "1056",
+                    "count": 1
+                },
+                {
+                    "id": "2003",
+                    "count": 2
+                },
+                {
+                    "id": "3340",
+                    "count": 1
+                }
+            ]
+        },
+        {
+            "type": "Common end items",
+            "items": [
+                {
+                    "id": "2049",
+                    "count": 1
+                },
+                {
+                    "id": "3401",
+                    "count": 1
+                },
+                {
+                    "id": "3800",
+                    "count": 1
+                },
+                {
+                    "id": "3110",
+                    "count": 1
+                },
+                {
+                    "id": "3047",
+                    "count": 1
+                },
+                {
+                    "id": "3065",
+                    "count": 1
+                }
+            ]
+        },
+        {
+            "type": "Items against ad-heavy teams",
+            "items": [
+                {
+                    "count": 1,
+                    "id": "2045"
+                },
+                {
+                    "count": 1,
+                    "id": "3075"
+                }
+            ]
+        },
+        {
+            "type": "Items against ap-heavy teams",
+            "items": [
+                {
+                    "count": 1,
+                    "id": "3800"
+                },
+                {
+                    "count": 1,
+                    "id": "3190"
+                },
+                {
+                    "count": 1,
+                    "id": "3111"
+                },
+                {
+                    "count": 1,
+                    "id": "3065"
+                },
+                {
+                    "count": 1,
+                    "id": "3725"
+                },
+                {
+                    "count": 1,
+                    "id": "3050"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,293 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-styles/paper-styles.html">
+<link rel="import" href="../bower_components/paper-toggle-button/paper-toggle-button.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="itemRowHeader.html">
+<link rel="import" href="itemList.html">
+<link rel="import" href="myCard.html">
+
+<dom-module id="item-set-list">
+    <style>
+        :host {
+            display: inline-block;
+            max-width: 400px;
+            height: 100%;
+        }
+
+        my-card {
+            --paper-card: {
+                width: 100%;
+                height: 100%;
+            };
+
+            --paper-card-header: {
+                width: 100%;
+                height: 150px;
+                display: inline-block;
+                overflow: hidden;
+            };
+
+            --paper-card-content: {
+                padding: 0px 4px 0px 4px;
+                height: calc(100% - 211px);
+            };
+
+            --paper-card-actions: {
+                height: 50px;
+            };
+
+            --paper-card-material: {
+                height: 100%;
+            };
+        }
+
+        .item-blocks {
+            height: 390px;
+            padding: 20px 10px 0px 10px;
+            overflow: auto;
+        }
+
+        .code-container {
+            height: calc(100% - 70px);
+            margin: 10px;
+            overflow: auto;
+        }
+        
+        .tab-disabled {
+            color: lightgrey;
+        }
+
+        paper-tab {
+            --paper-tab-ink: var(--paper-blue-grey-100);
+        }
+
+        paper-tabs {
+            --paper-tabs-selection-bar-color: var(--paper-blue-grey-100);
+        }
+
+        div {
+            font-family: 'Roboto', sans-serif;            
+        }
+
+        .title-background {
+            position: absolute;
+            top: 80px;
+            left: 0px;
+            width: 100%;
+            height: 70px;
+
+            background: -webkit-linear-gradient(transparent, black); /* For Safari 5.1 to 6.0 */
+            background: -o-linear-gradient(transparent, black); /* For Opera 11.1 to 12.0 */
+            background: -moz-linear-gradient(transparent, black); /* For Firefox 3.6 to 15 */
+            background: linear-gradient(transparent, black); /* Standard syntax */
+        }
+
+        .title-background span {
+            display: inline-block;
+            margin: 32px 0 0 16px;
+            font-family: 'Roboto', sans-serif;
+            font-size: 24px;
+            font-weight: 500;
+            color: white;
+        }
+
+        .bottom-toolbar {
+            height: 40px;
+            padding: 0px 10px;
+            float: bottom;
+        }
+
+        .toggle-label {
+            margin-top: 15px;
+            display: inline-block;
+        }
+
+        .download-button {
+            float: right;
+        }
+
+        .line-separator {
+            height: 1px;
+            border-bottom: 1px solid var(--paper-grey-200);
+        }
+
+        .item-blocks {
+            overflow: auto;
+            height: calc(100% - 70px);
+        }
+
+        .hello{
+            color: red;
+        }
+
+    </style>
+    <template>
+        <my-card    heading="" 
+                    elevation="3"
+                    class="item-set-list"
+                    image="{{splashArt}}">
+            <div class="title-background">
+                <span>{{championSelected}}</span>
+            </div>
+            <div class="card-content">
+                <paper-tabs selected="{{selectedIndex}}">                     
+                    <paper-tab  class$="{{getClass(championSelected, 'carry')}}" 
+                                disabled$="{{!hasBuild(championSelected, 'carry')}}">Carry</paper-tab>
+                    <paper-tab  class$="{{getClass(championSelected, 'support')}}" 
+                                disabled$="{{!hasBuild(championSelected, 'support')}}">Support</paper-tab>
+                    <paper-tab  class$="{{getClass(championSelected, 'jungle')}}" 
+                                disabled$="{{!hasBuild(championSelected, 'jungle')}}">Jungle</paper-tab>
+                </paper-tabs>
+                <div class="item-blocks" hidden$="{{showJSON}}">
+                    <template is="dom-repeat"
+                        items="{{itemBlocks}}">
+                        
+                        <item-row-header rowName="{{item.type}}"></item-row-header>
+                        <item-list itemsList="{{item.items}}"></item-list>
+                    </template>
+                </div>
+                <div class="line-separator"></div>
+                <pre class="code-container" hidden$="{{!showJSON}}"><code id="code" class="json">
+                    <p>{{championSelected}}</p>
+                </code></pre>
+            </div>
+            <div class="card-actions">
+                <div class="bottom-toolbar">
+                    <paper-toggle-button></paper-toggle-button>
+                    <div class="toggle-label">show JSON</div>
+                    <paper-button raised class="download-button">
+                        <iron-icon icon="file-download"></iron-icon>
+                        download
+                    </paper-button>
+                </div>
+            </div>
+        </my-card>
+        <iron-ajax
+            auto
+            url="../data/results/available_builds.json"
+            handle-as="json"
+            on-response="handleResponse"></iron-ajax>
+        <iron-ajax
+            auto
+            url="{{getURL(championSelected, build)}}"
+            params="{{getParams(championSelected, build)}}"
+            handle-as="json"
+            on-response="onReceiveBuild"></iron-ajax>
+        <iron-ajax
+            auto
+            url="../data/results/champion_info.json"
+            handle-as="json"
+            on-response="handleChampionInfo"></iron-ajax>
+    </template>
+    <script>
+        Polymer({
+            is: 'item-set-list',
+            properties: {
+                championSelected: {
+                    type: String,
+                    observer: "championSelectedChanged",
+                    reflect: true,
+                    notify: true
+                },
+
+                build: {
+                    type: String,
+                    value: "carry"
+                },
+
+                selectedIndex: {
+                    type: Number,
+                    value: 0,
+                    observer: "roleChanged"
+                },
+                
+                showJSON: {
+                    value: false
+                } 
+            },
+
+            created: function() {
+                this.roles = ['carry', 'support', 'jungle'];
+            },
+
+            attached: function() {
+                var toggleButton = document.querySelector('paper-toggle-button');
+                var that = this;
+                toggleButton.addEventListener('iron-change', function(e) {
+                    that.showJSON = toggleButton.checked;                    
+                });
+            },
+
+            championSelectedChanged: function(n, o) {
+                if (this.championInfo != undefined) {
+                    this.splashArt = this.championInfo[n].splash_url;
+
+                    for (var i = 0, len = this.roles.length; i < len; i++) {
+                        if (this.hasBuild(n, this.roles[i])) {
+                            this.selectedIndex = i;
+                            break;
+                        }
+                    }
+                }
+                
+            },
+
+            roleChanged: function(n, o) {
+                this.build = this.roles[n];
+                if (n == 0) {
+                    this.showjson = false;
+                } else {
+                    this.showjson = true;
+                }
+            },
+
+            handleResponse: function(e, request) {
+                this.availableBuilds = request.response;
+                this.championSelected = "Darius";
+            },
+
+            handleChampionInfo: function(e, request) {
+                this.championInfo = request.response.art;
+                this.championSelected = "Draven";
+            },
+
+            getURL: function(championSelected, build) {
+                return "../data/results/" + championSelected + "_" + build + ".json"
+            },
+
+            onReceiveBuild: function(e, request) {
+                this.json = JSON.stringify(request.response, null, '  ');
+                
+                this.$.code.textContent = this.json;
+                hljs.highlightBlock(this.$.code);
+                this.itemBlocks = request.response.blocks;
+            },
+
+            hasBuild: function(championSelected, role) {
+                if (this.availableBuilds == undefined || !this.availableBuilds.hasOwnProperty(championSelected)) {
+                    return false;
+                }
+
+                return this.availableBuilds[championSelected].indexOf(role) > -1;
+            },
+
+            getClass: function(championSelected, role) {
+                if (this.hasBuild(championSelected, role)) {
+                    return ""    
+                } else {
+                    return "tab-disabled";
+                }
+                
+            },
+
+            getParams: function() {
+                console.log({ t: new Date().getTime() });
+                return { t: new Date().getTime() };
+            }
+        });
+    </script>
+</dom-module>

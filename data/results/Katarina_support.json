@@ -1,0 +1,77 @@
+{
+    "blocks": [
+        {
+            "items": [
+                {
+                    "count": 1,
+                    "id": "1001"
+                },
+                {
+                    "count": 4,
+                    "id": "2003"
+                },
+                {
+                    "count": 1,
+                    "id": "3340"
+                }
+            ],
+            "type": "Starting items"
+        },
+        {
+            "items": [
+                {
+                    "count": 1,
+                    "id": "3157"
+                },
+                {
+                    "count": 1,
+                    "id": "3285"
+                },
+                {
+                    "count": 1,
+                    "id": "3092"
+                },
+                {
+                    "count": 1,
+                    "id": "3020"
+                },
+                {
+                    "count": 1,
+                    "id": "3001"
+                },
+                {
+                    "count": 1,
+                    "id": "3348"
+                },
+                {
+                    "count": 1,
+                    "id": "3152"
+                },
+                {
+                    "count": 1,
+                    "id": "3135"
+                },
+                {
+                    "count": 1,
+                    "id": "3117"
+                }
+            ],
+            "type": "Common end items"
+        },
+        {
+            "items": [
+                {
+                    "count": 1,
+                    "id": "1054"
+                }
+            ],
+            "type": "Items against ad-heavy teams"
+        }
+    ],
+    "map": "any",
+    "mode": "any",
+    "priority": false,
+    "sortrank": 0,
+    "title": "Katarina: support",
+    "type": "custom"
+}

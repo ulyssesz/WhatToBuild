@@ -1,0 +1,38 @@
+{
+    "title": "Akali: support",
+    "type": "custom",
+    "map": "SR",
+    "mode": "any",
+    "blocks": [
+        {
+            "type": "Starting items",
+            "items": [
+                {
+                    "id": "1029",
+                    "count": 1
+                },
+                {
+                    "id": "2003",
+                    "count": 5
+                },
+                {
+                    "id": "3340",
+                    "count": 1
+                }
+            ]
+        },
+        {
+            "type": "Common end items",
+            "items": [
+                {
+                    "id": 3146,
+                    "count": 1
+                },
+                {
+                    "id": 3157,
+                    "count": 1
+                }
+            ]
+        }
+    ]
+}

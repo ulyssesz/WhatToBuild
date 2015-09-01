@@ -1,0 +1,84 @@
+{
+    "title": "Soraka: support",
+    "type": "custom",
+    "map": "SR",
+    "mode": "any",
+    "blocks": [
+        {
+            "type": "Starting items",
+            "items": [
+                {
+                    "id": "2010",
+                    "count": 4
+                },
+                {
+                    "id": "3301",
+                    "count": 1
+                },
+                {
+                    "id": "3340",
+                    "count": 1
+                }
+            ]
+        },
+        {
+            "type": "Common end items",
+            "items": [
+                {
+                    "id": "2049",
+                    "count": 1
+                },
+                {
+                    "id": "3069",
+                    "count": 1
+                },
+                {
+                    "id": "3050",
+                    "count": 1
+                },
+                {
+                    "id": "3117",
+                    "count": 1
+                },
+                {
+                    "id": "3190",
+                    "count": 1
+                },
+                {
+                    "id": "3060",
+                    "count": 1
+                }
+            ]
+        },
+        {
+            "type": "Items against ad-heavy teams",
+            "items": [
+                {
+                    "count": 1,
+                    "id": "3050"
+                }
+            ]
+        },
+        {
+            "type": "Items against ap-heavy teams",
+            "items": [
+                {
+                    "count": 1,
+                    "id": "3060"
+                },
+                {
+                    "count": 1,
+                    "id": "3083"
+                },
+                {
+                    "count": 1,
+                    "id": "2045"
+                },
+                {
+                    "count": 1,
+                    "id": "3222"
+                }
+            ]
+        }
+    ]
+}

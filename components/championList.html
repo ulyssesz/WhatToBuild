@@ -1,0 +1,118 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../bower_components/iron-selector/iron-selector.html">
+<link rel="import" href="../bower_components/paper-card/paper-card.html">
+<link rel="import" href="championComponent.html">
+<link rel="import" href="myCard.html">
+
+
+<dom-module id="champion-list">
+    <style>
+        :host {
+            display: inline-block;
+            max-width: 550px;
+            vertical-align: top;
+            height: 100%;
+        }
+
+        my-card {
+            --paper-card-header-text: {
+                font-family: 'Roboto', sans-serif;
+                color: black;
+            };
+            
+            --paper-card: {
+                height: 100%;
+                width: 100%;
+            };
+
+            --paper-card-content: {
+                padding: 0px 4px 0px 4px;
+                height: calc(100% - 64px);
+                overflow: auto;
+            };
+
+            --paper-card-material: {
+                height: 100%;
+            };
+        }     
+
+        #shadow {
+            height: 200px;
+        }
+
+        div {
+            font-family: 'Roboto', sans-serif;
+            font-size: 50px;
+        }
+
+        champion-component {
+            margin: 5px;
+            border-style: solid;
+            border-radius: 40px;
+            border-width: 4px;
+            border-color: white;
+        }
+
+        iron-selector {
+            height: 100%;
+            overflow: auto;
+        }
+
+    </style>
+    <template>
+        <my-card class="champion-list" elevation="3" heading="Champions">
+            <div class="card-content">
+            <iron-selector  attr-for-selected="championName"
+                            selected="{{selectedIndex}}">
+                <template is="dom-repeat"
+                    items="{{filteredChampions}}">
+                    <champion-component champion-name="{{item}}" championIcon="{{getIcon(item)}}"
+                                        champion-selected="{{isChampionSelected(index, selectedIndex)}}">
+                </template>
+            </iron-selector>
+            </div>
+        </my-card>
+        <iron-ajax
+            auto
+            url="../data/results/champion_info.json"
+            handle-as="json"
+            on-response="handleResponse"></iron-ajax>
+    </template>
+    <script>
+        Polymer({
+            is: 'champion-list',
+            properties: {
+                selectedIndex: {
+                    value: "",
+                    type: String,
+                    notify: true,
+                    reflectToAttribute: true,
+                    observer: "indexChanged"
+                }  
+            },
+            
+            indexChanged: function(n, o) {
+                console.log("change", n, o);
+            },
+
+            ready: function() {
+
+            },
+
+            handleResponse: function(e, request) {
+                this.championOrder = request.response.order;
+                this.championInfo = request.response.art;
+                this.filteredChampions = this.championOrder;
+            },
+
+            getIcon: function(championName) {
+                return this.championInfo[championName].icon_url;
+            },
+
+            isChampionSelected: function(index, selectedIndex) {
+                return this.selectedIndex == this.filteredChampions[index];
+            }
+        });
+    </script>
+</dom-module>

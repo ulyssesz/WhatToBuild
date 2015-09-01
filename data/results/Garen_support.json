@@ -1,0 +1,34 @@
+{
+    "title": "Garen: support",
+    "type": "custom",
+    "map": "SR",
+    "mode": "any",
+    "blocks": [
+        {
+            "type": "Starting items",
+            "items": [
+                {
+                    "id": "2003",
+                    "count": 3
+                },
+                {
+                    "id": "3302",
+                    "count": 1
+                },
+                {
+                    "id": "3340",
+                    "count": 1
+                }
+            ]
+        },
+        {
+            "type": "Common end items",
+            "items": [
+                {
+                    "id": 3068,
+                    "count": 1
+                }
+            ]
+        }
+    ]
+}

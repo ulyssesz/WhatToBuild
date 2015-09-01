@@ -1,0 +1,79 @@
+{
+    "title": "Annie: support",
+    "type": "custom",
+    "map": "SR",
+    "mode": "any",
+    "blocks": [
+        {
+            "type": "Starting items",
+            "items": [
+                {
+                    "id": "2004",
+                    "count": 1
+                },
+                {
+                    "id": "2010",
+                    "count": 3
+                },
+                {
+                    "id": "3303",
+                    "count": 1
+                },
+                {
+                    "id": "3340",
+                    "count": 1
+                }
+            ]
+        },
+        {
+            "type": "Common end items",
+            "items": [
+                {
+                    "id": "2049",
+                    "count": 1
+                },
+                {
+                    "id": "3117",
+                    "count": 1
+                },
+                {
+                    "id": "3800",
+                    "count": 1
+                },
+                {
+                    "id": "3069",
+                    "count": 1
+                },
+                {
+                    "id": "3050",
+                    "count": 1
+                },
+                {
+                    "id": "3285",
+                    "count": 1
+                }
+            ]
+        },
+        {
+            "type": "Items against ap-heavy teams",
+            "items": [
+                {
+                    "count": 1,
+                    "id": "3800"
+                },
+                {
+                    "count": 1,
+                    "id": "3050"
+                },
+                {
+                    "count": 1,
+                    "id": "3116"
+                },
+                {
+                    "count": 1,
+                    "id": "3060"
+                }
+            ]
+        }
+    ]
+}

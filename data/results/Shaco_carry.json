@@ -1,0 +1,71 @@
+{
+    "title": "Shaco: carry",
+    "type": "custom",
+    "map": "SR",
+    "mode": "any",
+    "blocks": [
+        {
+            "type": "Starting items",
+            "items": [
+                {
+                    "id": "2003",
+                    "count": 2
+                },
+                {
+                    "id": "2004",
+                    "count": 1
+                },
+                {
+                    "id": "2041",
+                    "count": 1
+                },
+                {
+                    "id": "3340",
+                    "count": 1
+                }
+            ]
+        },
+        {
+            "type": "Common end items",
+            "items": [
+                {
+                    "id": 3074,
+                    "count": 1
+                },
+                {
+                    "id": 3087,
+                    "count": 1
+                },
+                {
+                    "id": 3031,
+                    "count": 1
+                },
+                {
+                    "id": 3117,
+                    "count": 1
+                },
+                {
+                    "id": 3035,
+                    "count": 1
+                }
+            ]
+        },
+        {
+            "type": "Items against ap-heavy teams",
+            "items": [
+                {
+                    "count": 1,
+                    "id": "3078"
+                },
+                {
+                    "count": 1,
+                    "id": "3156"
+                },
+                {
+                    "count": 1,
+                    "id": "3056"
+                }
+            ]
+        }
+    ]
+}

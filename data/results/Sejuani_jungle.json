@@ -1,0 +1,100 @@
+{
+    "title": "Sejuani: jungle",
+    "type": "custom",
+    "map": "SR",
+    "mode": "any",
+    "blocks": [
+        {
+            "type": "Starting items",
+            "items": [
+                {
+                    "id": "1039",
+                    "count": 1
+                },
+                {
+                    "id": "2003",
+                    "count": 2
+                },
+                {
+                    "id": "3340",
+                    "count": 1
+                }
+            ]
+        },
+        {
+            "type": "Common end items",
+            "items": [
+                {
+                    "id": "3725",
+                    "count": 1
+                },
+                {
+                    "id": "3110",
+                    "count": 1
+                },
+                {
+                    "id": "3143",
+                    "count": 1
+                },
+                {
+                    "id": "3190",
+                    "count": 1
+                },
+                {
+                    "id": "2049",
+                    "count": 1
+                },
+                {
+                    "id": "3117",
+                    "count": 1
+                }
+            ]
+        },
+        {
+            "type": "Items against ad-heavy teams",
+            "items": [
+                {
+                    "count": 1,
+                    "id": "3110"
+                },
+                {
+                    "count": 1,
+                    "id": "3143"
+                },
+                {
+                    "count": 1,
+                    "id": "3075"
+                },
+                {
+                    "count": 1,
+                    "id": "3047"
+                }
+            ]
+        },
+        {
+            "type": "Items against ap-heavy teams",
+            "items": [
+                {
+                    "count": 1,
+                    "id": "3725"
+                },
+                {
+                    "count": 1,
+                    "id": "3190"
+                },
+                {
+                    "count": 1,
+                    "id": "3800"
+                },
+                {
+                    "count": 1,
+                    "id": "3742"
+                },
+                {
+                    "count": 1,
+                    "id": "3083"
+                }
+            ]
+        }
+    ]
+}

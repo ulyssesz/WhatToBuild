@@ -1,0 +1,72 @@
+{
+    "title": "Kha'Zix: carry",
+    "type": "custom",
+    "map": "SR",
+    "mode": "any",
+    "blocks": [
+        {
+            "type": "Starting items",
+            "items": [
+                {
+                    "id": "2003",
+                    "count": 3
+                },
+                {
+                    "id": "2041",
+                    "count": 1
+                },
+                {
+                    "id": "3340",
+                    "count": 1
+                }
+            ]
+        },
+        {
+            "type": "Common end items",
+            "items": [
+                {
+                    "id": "3074",
+                    "count": 1
+                },
+                {
+                    "id": "3035",
+                    "count": 1
+                },
+                {
+                    "id": "3071",
+                    "count": 1
+                },
+                {
+                    "id": "3111",
+                    "count": 1
+                },
+                {
+                    "id": "3156",
+                    "count": 1
+                },
+                {
+                    "id": "3072",
+                    "count": 1
+                }
+            ]
+        },
+        {
+            "type": "Items against ad-heavy teams",
+            "items": [
+                {
+                    "count": 1,
+                    "id": "3143"
+                }
+            ]
+        },
+        {
+            "type": "Items against ap-heavy teams",
+            "items": [
+                {
+                    "count": 1,
+                    "id": "3156"
+                }
+            ]
+        }
+    ]
+}
