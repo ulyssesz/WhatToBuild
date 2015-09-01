@@ -93,7 +93,7 @@
             },
             
             indexChanged: function(n, o) {
-                console.log("change", n, o);
+                ga('send', 'event', 'champion selection', n);
             },
 
             ready: function() {

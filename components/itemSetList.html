@@ -218,6 +218,7 @@
                 var toggleButton = document.querySelector('paper-toggle-button');
                 var that = this;
                 toggleButton.addEventListener('iron-change', function(e) {
+                    ga('send', 'event', 'button', 'click json');
                     that.showJSON = toggleButton.checked;                    
                 });
             },
@@ -285,11 +286,11 @@
             },
 
             getParams: function() {
-                console.log({ t: new Date().getTime() });
                 return { t: new Date().getTime() };
             },
 
             golink: function() {
+                ga('send', 'event', 'button', 'click download');
                 window.open("https://github.com/ulyssesz/WhatToBuildItemSets", '_blank');
             }
 

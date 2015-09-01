@@ -70,7 +70,6 @@
             },
 
             championSelectedChanged: function(n, o) {
-                console.log("other", n);
             },
 
             ready: function() {
@@ -79,10 +78,17 @@
 
             onClickInfo: function() {
                 this.showMain = false;
+                ga('send', 'event', 'button', 'show info');
+                ga('send', 'pageview', {
+                  'page': '/info',
+                  'title': 'info page'
+                });
             },
 
             onClickHome: function() {
                 this.showMain = true;
+                ga('send', 'event', 'button', 'show main');
+                ga('send', 'pageview');
             }
         });
     </script>
