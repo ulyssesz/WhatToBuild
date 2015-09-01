@@ -43,6 +43,12 @@ def load_items():
 		else:
 			d['made_from'] = []
 		ITEMS[int(c)] = convert(d)
+
+	item_names = {}
+	for k,v in ITEMS.iteritems():
+		item_names[str(k)] = v.name
+	with open(os.path.join("..", "data", "results", "item_names.json"), 'wb') as outfile:
+		json.dump(item_names, outfile)
 		
 
 def get_games(start, count):
@@ -441,7 +447,7 @@ load_items()
 if __name__ == "__main__":
 	pass
 	# get_dmg_centers()
-	get_role_centers()
+	# get_role_centers()
 	# get_defence_items()
 
 

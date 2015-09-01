@@ -182,6 +182,11 @@
             url="../data/results/champion_info.json"
             handle-as="json"
             on-response="handleChampionInfo"></iron-ajax>
+        <iron-ajax
+            auto
+            url="../data/results/item_names.json"
+            handle-as="json"
+            on-response="handleItemNames"></iron-ajax>
     </template>
     <script>
         Polymer({
@@ -212,6 +217,7 @@
 
             created: function() {
                 this.roles = ['carry', 'support', 'jungle'];
+                this.itemInfo = {};
             },
 
             attached: function() {
@@ -256,6 +262,10 @@
                 this.championSelected = "Draven";
             },
 
+            handleItemNames: function(e, request) {
+                this.itemInfo = request.response;
+            },
+
             getURL: function(championSelected, build) {
                 return "./data/results/" + championSelected + "_" + build + ".json"
             },
@@ -265,6 +275,16 @@
                 
                 this.$.code.textContent = this.json;
                 hljs.highlightBlock(this.$.code);
+
+                var itemBlocks = request.response.blocks;
+                for (var i = itemBlocks.length - 1; i >= 0; i--) {
+                    for (var j = itemBlocks[i].items.length - 1; j >= 0; j--) {
+                        var itemId = parseInt(itemBlocks[i].items[j].id);
+                        if (this.itemInfo.hasOwnProperty(itemId)) {
+                            itemBlocks[i].items[j].name = this.itemInfo[itemId];
+                        }
+                    };
+                };
                 this.itemBlocks = request.response.blocks;
             },
 

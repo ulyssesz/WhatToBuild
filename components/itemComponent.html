@@ -1,6 +1,6 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="../bower_components/iron-image/iron-image.html">
-
+<link rel="import" href="../bower_components/paper-tooltip/paper-tooltip.html">
 <dom-module id="item-component">
     <style>
         iron-image {
@@ -9,10 +9,17 @@
             margin-bottom: 20px;
             border-radius: 25px;
         }
+
+        .container {
+            display: inline-block;
+        }
     </style>
     <template>
+        <div class="container">
         <iron-image 
             src="{{formatUrl(itemid)}}" preload fade sizing="cover"></iron-image>
+            <paper-tooltip margin-top=-20>{{itemname}}</paper-tooltip>
+        </div>
     </template>
     <script>
         Polymer({
@@ -21,7 +28,12 @@
                 itemId: {
                     type: String,
                     value: "1000"
-                }                
+                },
+
+                itemname: {
+                    type: String,
+                    value: ""
+                }               
             },
 
             formatUrl: function(itemId) {
